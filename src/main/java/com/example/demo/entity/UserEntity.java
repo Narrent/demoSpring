@@ -1,9 +1,9 @@
 package com.example.demo.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
+
+import java.util.List;
+
 
 @Entity
 public class UserEntity{
@@ -12,8 +12,17 @@ public class UserEntity{
     private long id;
     private String name;
     private String password;
-
+    @OneToMany(cascade = CascadeType.ALL,mappedBy = "user")
+    private List<TodoEntity> todos;
     public UserEntity() {
+    }
+
+    public List<TodoEntity> getTodos() {
+        return todos;
+    }
+
+    public void setTodos(List<TodoEntity> todos) {
+        this.todos = todos;
     }
 
     public long getId() {
